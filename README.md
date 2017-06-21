@@ -37,6 +37,6 @@
 
 进入*pages*目录，创建注册&登录页面（使用bootstrap快速完成页面）
 
-进入[bootstrap官网](http://getbootstrap.com/css/#forms "表单代码")选择自己喜欢的样式代码copy过来。
+进入[bootstrap官网 form](http://getbootstrap.com/css/#forms "表单代码")选择自己喜欢的样式代码copy过来。
 
-进入[bootstrap官网](http://getbootstrap.com/getting-started/#download "css外链"")
+进入[bootstrap官网 cdn](http://getbootstrap.com/getting-started/#download "css外链")
