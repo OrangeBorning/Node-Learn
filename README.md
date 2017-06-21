@@ -29,7 +29,7 @@
 
 安装body-Parser中间件（用来解析请求body中内容，做JSON编码处理，url编码处理，文件上传处理）
 
-    $ npm body-Parser --save
+    $ npm body-parser --save
 
 创建*pages*目录，存放我的页面
 
@@ -40,4 +40,6 @@
 进入[bootstrap官网 form](http://getbootstrap.com/css/#forms "表单代码")选择自己喜欢的样式代码copy过来。
 
 进入[bootstrap官网 CDN](http://getbootstrap.com/getting-started/#download "css外链")把css外链copy过来。
+
+进入[jquery官网 CDN](https://code.jquery.com/ "jquery")把jquery引入。
 

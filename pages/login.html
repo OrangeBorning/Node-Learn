@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<title>login</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../static/common.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+		<div>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">用户名</label>
+		    <input type="email" class="form-control" id="username" placeholder="username">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">密码</label>
+		    <input type="password" class="form-control" id="pwd" placeholder="Password">
+		  </div>
+		  <button type="submit" class="btn btn-default">登录</button>
+		</div>
+		<script>
+			$(function () {
+				var user = $("#username"),
+					pwd = $("#pwd");
+				$(".btn").on('click',function(event) {
+					event.preventDefault();
+					var req = {
+						username:user.val(),
+						pwd:pwd.val()
+					};
+
+					$.post("/login",req,function (data) {
+							console.log(data);
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
