@@ -39,4 +39,5 @@
 
 进入[bootstrap官网 form](http://getbootstrap.com/css/#forms "表单代码")选择自己喜欢的样式代码copy过来。
 
-进入[bootstrap官网 cdn](http://getbootstrap.com/getting-started/#download "css外链")
+进入[bootstrap官网 CDN](http://getbootstrap.com/getting-started/#download "css外链")把css外链copy过来。
+
