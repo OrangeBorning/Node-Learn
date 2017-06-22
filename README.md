@@ -141,4 +141,28 @@
 
 安装最新版本的[Chrome开发者版本](https://api.shuax.com/tools/getchrome 'Chrome离线安装包')，新增了一个Node.js开发者工具，方便调试debug
 
+获取请求体的内容：
+
+    req.body:{username:"test",pwd:"123456"};
+
+我们现在获取到了页面发来的请求体，传递了一个对象，在这个对象中有我们需要保存入数据库的数据。
+
+#### mongodb
+
+mongodb数据库安装配置：
+
+安装完mongodb后，选择一个磁盘区来存储数据，例：
+
+    D:\data
+
+在d盘中新建了文件夹data，这个文件
+
+    data
+      |__conf
+      |    |__mongo.conf
+      |__db
+      |__dbconf
+           |__mongodb.log
+
+
 
