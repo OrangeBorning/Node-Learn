@@ -155,17 +155,23 @@ mongodb数据库安装配置：
 
     D:\data
 
-在d盘中新建了文件夹data，这个文件
+在d盘中新建了文件夹data，这个文件用来存储数据信息及数据库日志
 
     data
       |
       |_ _ conf
       |      |_ _mongo.conf
-      |
       |_ _ db
       |
       |_ _ dbconf
              |_ _ mongodb.log
 
+mongo.conf内容写入：
 
+    dbpath = D:\data\db
+    logpath = D:\data\dbConf\mongodb.log
 
+#### mongoose
+安装mongoose
+
+    $ npm i mongoose --save
