@@ -55,7 +55,8 @@
                 pwd:pwd.val()
             };
             $.post("/register",req,function (data) {
-                    console.log(data);
+                console.log(data);
+                location.href="login.html"
             });
          });
     });
@@ -133,7 +134,7 @@
 
 其他静态资源的位置也是如此。到这里，我们成功的完成了在express框架下的服务器环境处理请求，并作出响应。
 
-### mongoose & express
+### mongodb & express
 
 以上完成了注册登录页面链接服务器，服务器对请求作出响应的步骤，接下来我们要完成的是。数据库与服务器的连接。
 
@@ -166,12 +167,98 @@ mongodb数据库安装配置：
       |_ _ dbconf
              |_ _ mongodb.log
 
+在mongodb安装目录下找到bin目录，打开以后创建一个start.bat文件
+
+    $ touch start.bat
+
+写入以写内容：
+
+    mongod -f D:\data\conf\mongo.conf
+
 mongo.conf内容写入：
 
     dbpath = D:\data\db
     logpath = D:\data\dbConf\mongodb.log
 
-#### mongoose
-安装mongoose
+#### connect to server by mongoose
+安装mongoose，mongoose是用来连接mongodb与服务器的插件
 
     $ npm i mongoose --save
+
+在app.js 中增加以下内容：
+
+    var mongoose = require("mongoose")
+    mongoose.connect("mongodb://localhost/**learnnode**")
+     //加粗部分为数据库名，是你自己创建的用来存储用户数据的数据库名。
+    var db = mongoose.connection;
+    db.on("error",console.error.bind(console,"数据库连接失败"));
+    db.once("open",function(){
+        console.log("数据库连接成功");
+    });
+
+打开start.bat,开启数据库，打开mongo.exe在数据库中做操作，创建新的创建库，用来存储服务器数据
+
+    use learnnode
+
+在Demo目录下打开命令行，输入：
+
+    node app.js
+
+后台打印以下结果：
+
+    服务器连接成功！
+    数据库连接成功
+
+到这里就顺利完成了，数据库与服务器的连接。
+
+###  data save
+
+#### mongoose & schema & model
+创建schema目录，用来存储数据结构骨架文件。
+
+    $ mkdir schema
+
+创建userschema.js文件，存储注册表中的用户注册信息。
+
+    var mongoose = require("mongoose");
+    //一种以文件形式存储数据库模型骨架，建立一个映射（与数据库集合属性对于的映射）
+    var UserSchema = mongoose.Schema({
+        username : String,
+        pwd : String
+    });
+    module.exports = UserSchema;
+
+创建model目录，用来存储数据模型文件。
+
+    $ mkdir model
+
+创建usermodel.js文件，存储注册表中的用户注册信息。
+
+    var mongoose = require("mongoose");
+    var UserSchema = require("../schema/userschema");
+    var Usermodel = mongoose.model("user",UserSchema)
+    module.exports = Usermodel;
+
+完成数据骨架模型建立后，在app.js中调用它
+
+    var User = require('./model/Usermodel');
+
+处理register页面发来的请求，将注册信息存储进数据库
+
+    app.post('/register',function(req,res){
+        var user = req.body;
+        var u = new User({
+            username:user.username,
+            pwd:user.pwd
+        });
+        u.save(function(err,doc){ //使用实例 u 的save方法 来执行数据的保存
+            if (err) {
+                res.json({code:1,msg:"保存失败！"});
+                return
+            };
+           res.json({code:0,msg:"保存成功"}); //给前端相应一个json对象回去
+        })
+    });
+
+处理post页面发来的请求，查询数据库中用户信息。
+
