@@ -158,11 +158,14 @@ mongodb数据库安装配置：
 在d盘中新建了文件夹data，这个文件
 
     data
-      |__conf
-      |    |__mongo.conf
-      |__db
-      |__dbconf
-           |__mongodb.log
+      |
+      |_ _ conf
+      |      |_ _mongo.conf
+      |
+      |_ _ db
+      |
+      |_ _ dbconf
+             |_ _ mongodb.log
 
 
 
